@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Active tab: vibrant teal -->
+    <item android:color="#00BFA5" android:state_checked="true"/>
+
+    <!-- Inactive tabs: soft gray -->
+    <item android:color="#050505" android:state_checked="false"/>
+
+</selector>

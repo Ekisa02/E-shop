@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Custom.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <!-- Round-cornered gradient background -->
+        <item name="android:background">@drawable/bottom_nav_background</item>
+
+        <!-- Icon & text tint (active/inactive) -->
+        <item name="itemIconTint">@color/bottom_nav_item_color</item>
+        <item name="itemTextColor">@color/bottom_nav_item_color</item>
+
+
+
+        <!-- Ripple on tap -->
+        <item name="itemRippleColor">?attr/colorOnPrimary</item>
+
+        <!-- Label text styles -->
+        <item name="itemTextAppearanceActive">@style/BottomNav.ActiveLabel</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNav.InactiveLabel</item>
+
+        <!-- Make icons a bit bigger -->
+        <item name="itemIconSize">28dp</item>
+
+        <!-- Elevation so it casts a soft shadow -->
+        <item name="android:elevation">4dp</item>
+    </style>
+    <!-- Active label: bold, slightly larger -->
+    <style name="BottomNav.ActiveLabel" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Inactive label: regular weight -->
+    <style name="BottomNav.InactiveLabel" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>
