@@ -1,6 +1,6 @@
 # E-shop
 
-Welcome to the ** E-shop**!  
+Welcome to the **E-shop**!  
 This folder is part of the Eldoret Electronics project—your one-stop mobile shop for TVs, smartphones, laptops, and more. We handpick and deliver products across Eldoret city in under 24 hours. 
 
 ## Features
