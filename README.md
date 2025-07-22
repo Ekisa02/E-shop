@@ -3,10 +3,10 @@
 Welcome to the **E-shop**!  
 This folder is part of the Eldoret Electronics project—your one-stop mobile shop for TVs, smartphones, laptops, and more. We handpick and deliver products across Eldoret city in under 24 hours. 
 
-## 📁 Demo Folder
+#
+## 🖼️ Demo Preview
 
-This project includes a demo folder for testing purposes.  
-➡️ [View the demo folderr](Demo/)sidebar.png)
+![Demo Screenshot](Demo/sidebar.png)
 
 
 ## Features
