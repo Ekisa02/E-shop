@@ -20,5 +20,9 @@
             android:id="@+id/nav_appversion"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/App_version" />
+        <item
+            android:id="@+id/nav_adminpage"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/Adminpage" />
     </group>
 </menu>

@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
 
-</selector>
+    <!-- Shopping Cart Base -->
+    <path
+        android:fillColor="#2962FF"
+        android:pathData="M40,90a10,10 0,1 1,0 -20,10,10 0,1 1,0 20zM80,90a10,10 0,1 1,0 -20,10,10 0,1 1,0 20z"/>
+    <path
+        android:fillColor="#2962FF"
+        android:pathData="M25,30h70l-10,40H35z"/>
+
+    <!-- Circuit Board Elements -->
+    <path
+        android:fillColor="#FF6D00"
+        android:pathData="M45,50h10v10H45z"/>
+    <path
+        android:fillColor="#FF6D00"
+        android:pathData="M65,50h10v10H65z"/>
+    <path
+        android:fillColor="#FF6D00"
+        android:pathData="M55,30h10v10H55z"/>
+
+    <!-- Wi-Fi Signal -->
+    <path
+        android:fillColor="#FF6D00"
+        android:strokeColor="#FF6D00"
+        android:strokeWidth="2"
+        android:pathData="M90,30a15,15 0,0 1,0 30"/>
+    <path
+        android:fillColor="#FF6D00"
+        android:strokeColor="#FF6D00"
+        android:strokeWidth="2"
+        android:pathData="M90,35a10,10 0,0 1,0 20"/>
+    <path
+        android:fillColor="#FF6D00"
+        android:strokeColor="#FF6D00"
+        android:strokeWidth="2"
+        android:pathData="M90,40a5,5 0,0 1,0 10"/>
+</vector>

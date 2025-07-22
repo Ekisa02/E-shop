@@ -22,4 +22,9 @@
         android:name="com.joseph.e_electronicshop.ui.slideshow.SlideshowFragment"
         android:label="@string/About_us"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_adminpage"
+        android:name="com.joseph.e_electronicshop.ui.home.AdminpageFragment"
+        android:label="@string/Adminpage"
+        tools:layout="@layout/fragment_adminpage" />
 </navigation>
