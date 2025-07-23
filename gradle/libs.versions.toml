@@ -17,6 +17,8 @@ ucropVersion = "2.2.6-native"
 googleGmsGoogleServices = "4.4.3"
 firebaseFirestore = "25.1.4"
 firebaseStorage = "21.0.2"
+recyclerview = "1.4.0"
+playServicesAnalyticsImpl = "18.2.0"
 
 [libraries]
 activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
@@ -36,6 +38,8 @@ ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
 ucrop-v226native = { module = "com.github.yalantis:ucrop", version.ref = "ucropVersion" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+play-services-analytics-impl = { group = "com.google.android.gms", name = "play-services-analytics-impl", version.ref = "playServicesAnalyticsImpl" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

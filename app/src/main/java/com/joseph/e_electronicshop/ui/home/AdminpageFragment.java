@@ -1,14 +1,11 @@
 package com.joseph.e_electronicshop.ui.home;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -33,8 +30,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -45,7 +40,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class AdminpageFragment extends Fragment {
 
@@ -77,10 +71,7 @@ public class AdminpageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize Firebase Firestore
         firestore = FirebaseFirestore.getInstance();
-
-        // Initialize UI components
         initializeViews(view);
         setupDropdowns();
         setupButtonListeners();
@@ -103,7 +94,6 @@ public class AdminpageFragment extends Fragment {
     }
 
     private void setupDropdowns() {
-        // Product categories
         String[] categories = {
                 "Smartphones", "Laptops", "Televisions", "Headphones",
                 "Cameras", "Accessories", "Gaming Consoles", "Smartwatches",
@@ -116,7 +106,6 @@ public class AdminpageFragment extends Fragment {
         );
         categoryDropdown.setAdapter(categoryAdapter);
 
-        // Discount types
         String[] discountTypes = {"Percentage", "Fixed Amount"};
         ArrayAdapter<String> discountAdapter = new ArrayAdapter<>(
                 requireContext(),
@@ -132,16 +121,14 @@ public class AdminpageFragment extends Fragment {
     }
 
     private void setupActivityLaunchers() {
-        // Permission launcher
         permissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
                 isGranted -> {
                     if (isGranted) openImagePicker();
-                    else Toast.makeText(getContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                    else showToast("Permission denied");
                 }
         );
 
-        // Image picker launcher
         imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -155,7 +142,7 @@ public class AdminpageFragment extends Fragment {
                                 productImageView.setImageBitmap(bitmap);
                                 if (inputStream != null) inputStream.close();
                             } catch (Exception e) {
-                                Toast.makeText(getContext(), "Error loading image", Toast.LENGTH_SHORT).show();
+                                showToast("Error loading image");
                                 Log.e("ImageError", "Error loading image", e);
                             }
                         }
@@ -198,13 +185,11 @@ public class AdminpageFragment extends Fragment {
     }
 
     private void saveProductToFirestore() {
-        // Validate image first
         if (selectedImageUri == null) {
-            Toast.makeText(getContext(), "Please upload a product image", Toast.LENGTH_SHORT).show();
+            showToast("Please upload a product image");
             return;
         }
 
-        // Get all input values
         String productName = productNameEditText.getText().toString().trim();
         String priceKsh = priceKshEditText.getText().toString().trim();
         String description = productDescriptionEditText.getText().toString().trim();
@@ -212,45 +197,20 @@ public class AdminpageFragment extends Fragment {
         String discount = discountEditText.getText().toString().trim();
         String discountType = discountTypeSpinner.getText().toString().trim();
 
-        // Validate required fields
         if (productName.isEmpty() || priceKsh.isEmpty() || description.isEmpty() || category.isEmpty()) {
-            Toast.makeText(getContext(), "Please fill all required fields", Toast.LENGTH_SHORT).show();
+            showToast("Please fill all required fields");
             return;
         }
 
-        // =============================================
-        // UPDATED: Show loading state (using compound drawables for standard Button)
-        // =============================================
-        saveProductButton.setEnabled(false);
-        saveProductButton.setText("SAVING...");
+        setLoadingState(true);
 
-        // Add loading spinner drawable to the left of text
-        Drawable loadingIcon = ContextCompat.getDrawable(getContext(), R.drawable.ic_loading);
-        if (loadingIcon != null) {
-            loadingIcon.setTint(Color.WHITE); // Make icon white
-            saveProductButton.setCompoundDrawablesWithIntrinsicBounds(loadingIcon, null, null, null);
-        }
-        saveProductButton.setCompoundDrawablePadding(16); // Add space between icon and text
-
-        // Show progress bar
-        imageUploadProgressBar.setVisibility(View.VISIBLE);
-
-        // Convert image to Base64
         String base64Image = encodeImageToBase64(selectedImageUri);
         if (base64Image == null) {
-            Toast.makeText(getContext(), "Error processing image", Toast.LENGTH_SHORT).show();
-
-            // =============================================
-            // UPDATED: Reset button state on image error
-            // =============================================
-            imageUploadProgressBar.setVisibility(View.GONE);
-            saveProductButton.setEnabled(true);
-            saveProductButton.setText("SAVE PRODUCT");
-            saveProductButton.setCompoundDrawables(null, null, null, null);
+            showToast("Error processing image");
+            setLoadingState(false);
             return;
         }
 
-        // Create product data map
         Map<String, Object> product = new HashMap<>();
         product.put("productName", productName);
         product.put("priceKsh", priceKsh);
@@ -262,85 +222,130 @@ public class AdminpageFragment extends Fragment {
         product.put("imageBase64", base64Image);
         product.put("timestamp", System.currentTimeMillis());
 
-        // Save to Firestore
         firestore.collection("products")
                 .add(product)
                 .addOnSuccessListener(documentReference -> {
-                    // Create a custom dialog
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.ColorfulDialogTheme);
-
-                    // Set custom view with icon and colors
-                    View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.success_dialog, null);
-                    builder.setView(dialogView);
-
-                    // Find views
-                    ImageView icon = dialogView.findViewById(R.id.success_icon);
-                    Button homeButton = dialogView.findViewById(R.id.home_button);
-
-                    // Make it colorful
-                    GradientDrawable drawable = new GradientDrawable();
-                    drawable.setShape(GradientDrawable.RECTANGLE);
-                    drawable.setCornerRadius(32f);
-                    drawable.setColors(new int[]{
-                            Color.parseColor("#FF9A9E"),  // Pink
-                            Color.parseColor("#FAD0C4"),  // Peach
-                            Color.parseColor("#FFD1FF")   // Light purple
-                    });
-                    drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
-                    drawable.setOrientation(GradientDrawable.Orientation.LEFT_RIGHT);
-                    dialogView.setBackground(drawable);
-
-                    // Set success icon
-                    icon.setImageResource(R.drawable.ic_success);
-
-                    // Create and show dialog
-                    AlertDialog dialog = builder.create();
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.show();
-
-                    // Set button click to go home
-                    homeButton.setOnClickListener(v -> {
-                        dialog.dismiss();
-                        if (isAdded() && getView() != null) {
-                            try {
-                                NavHostFragment.findNavController(this).navigate(R.id.nav_home);
-                            } catch (Exception e) {
-                                Log.e("Navigation", "Error navigating home", e);
-                            }
-                        }
-                    });
-
-                    clearForm();
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() -> {
+                            setLoadingState(false);
+                            showSuccessDialog();
+                            clearForm();
+                        });
+                    }
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Error saving product: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    Log.e("FirestoreError", "Error saving product", e);
-
-                    // =============================================
-                    // UPDATED: Reset button state on failure
-                    // =============================================
-                    imageUploadProgressBar.setVisibility(View.GONE);
-                    saveProductButton.setEnabled(true);
-                    saveProductButton.setText("SAVE PRODUCT");
-                    saveProductButton.setCompoundDrawables(null, null, null, null);
-                })
-                .addOnCompleteListener(task -> {
-                    // =============================================
-                    // UPDATED: Hide progress bar when complete
-                    // (success case handled in dialog, failure case handled above)
-                    // =============================================
-                    imageUploadProgressBar.setVisibility(View.GONE);
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() -> {
+                            setLoadingState(false);
+                            showToast("Error saving product: " + e.getMessage());
+                            Log.e("FirestoreError", "Error saving product", e);
+                        });
+                    }
                 });
     }
+
+    private void setLoadingState(boolean isLoading) {
+        if (isAdded()) {
+            requireActivity().runOnUiThread(() -> {
+                saveProductButton.setEnabled(!isLoading);
+                imageUploadProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+                saveProductButton.setText(isLoading ? "SAVING..." : "SAVE PRODUCT");
+
+                if (isLoading) {
+                    Drawable loadingIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_loading);
+                    if (loadingIcon != null) {
+                        loadingIcon.setTint(Color.WHITE);
+                        saveProductButton.setCompoundDrawablesWithIntrinsicBounds(loadingIcon, null, null, null);
+                    }
+                    saveProductButton.setCompoundDrawablePadding(16);
+                } else {
+                    saveProductButton.setCompoundDrawables(null, null, null, null);
+                }
+            });
+        }
+    }
+
+    private void showSuccessDialog() {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.success_dialog, null);
+            builder.setView(dialogView);
+
+            ImageView icon = dialogView.findViewById(R.id.success_icon);
+            Button homeButton = dialogView.findViewById(R.id.home_button);
+
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setShape(GradientDrawable.RECTANGLE);
+            drawable.setCornerRadius(32f);
+            drawable.setColors(new int[]{
+                    Color.parseColor("#FF9A9E"),
+                    Color.parseColor("#FAD0C4"),
+                    Color.parseColor("#FFD1FF")
+            });
+            drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+            drawable.setOrientation(GradientDrawable.Orientation.LEFT_RIGHT);
+            dialogView.setBackground(drawable);
+
+            icon.setImageResource(R.drawable.ic_success);
+
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+            homeButton.setOnClickListener(v -> {
+                dialog.dismiss();
+                navigateToHome();
+            });
+
+            if (!requireActivity().isFinishing() && !requireActivity().isDestroyed()) {
+                dialog.show();
+            }
+        } catch (Exception e) {
+            Log.e("DialogError", "Error showing success dialog", e);
+            showToast("Product saved successfully!");
+            navigateToHome();
+        }
+    }
+
+    private void navigateToHome() {
+        if (isAdded()) {
+            try {
+                NavHostFragment.findNavController(this).navigate(R.id.nav_home);
+            } catch (Exception e) {
+                Log.e("Navigation", "Error navigating home", e);
+            }
+        }
+    }
+
     private void clearForm() {
-        productNameEditText.setText("");
-        priceKshEditText.setText("");
-        priceUsdEditText.setText("");
-        discountEditText.setText("");
-        productDescriptionEditText.setText("");
-        categoryDropdown.setText("");
-        discountTypeSpinner.setText("");
-        productImageView.setImageResource(R.drawable.ic_add_photo_placeholder);
-        selectedImageUri = null;
+        if (isAdded()) {
+            requireActivity().runOnUiThread(() -> {
+                productNameEditText.setText("");
+                priceKshEditText.setText("");
+                priceUsdEditText.setText("");
+                discountEditText.setText("");
+                productDescriptionEditText.setText("");
+                categoryDropdown.setText("");
+                discountTypeSpinner.setText("");
+                productImageView.setImageResource(R.drawable.ic_add_photo_placeholder);
+                selectedImageUri = null;
+            });
+        }
+    }
+
+    private void showToast(String message) {
+        if (isAdded()) {
+            requireActivity().runOnUiThread(() ->
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            );
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        productImageView = null;
+        uploadPhotoButton = null;
+        saveProductButton = null;
+        imageUploadProgressBar = null;
     }
 }
