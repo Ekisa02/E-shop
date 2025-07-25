@@ -5,6 +5,7 @@ import com.google.firebase.firestore.PropertyName;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Product {
     // Firestore document ID (excluded from Firestore fields)
@@ -173,13 +174,22 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id.equals(product.id);
+        return inCart == product.inCart &&
+                cartTimestamp == product.cartTimestamp &&
+                timestamp == product.timestamp &&
+                id.equals(product.id) &&
+                productName.equals(product.productName) &&
+                priceKsh.equals(product.priceKsh) &&
+                Objects.equals(discount, product.discount) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(imageBase64, product.imageBase64);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hash(id, productName, priceKsh, discount, description, imageBase64, inCart, cartTimestamp, timestamp);
     }
+
 
 
 

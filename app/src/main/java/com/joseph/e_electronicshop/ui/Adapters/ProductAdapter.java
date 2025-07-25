@@ -147,10 +147,10 @@ public class ProductAdapter extends ListAdapter<Product, ProductAdapter.ProductV
     }
 
     private static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK =
-            new DiffUtil.ItemCallback<Product>() {
+            new DiffUtil.ItemCallback<>() {
                 @Override
                 public boolean areItemsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
-                    return oldItem.getId().equals(newItem.getId());
+                    return oldItem.equals(newItem);
                 }
 
                 @Override

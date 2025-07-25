@@ -47,6 +47,16 @@ public class HomeContentFragment extends Fragment {
             binding.textHome.setVisibility(View.VISIBLE);
         });
     }
+    private void showProgress(String message) {
+        binding.progressContainer.setVisibility(View.VISIBLE);
+        binding.progressText.setText(message);
+    }
+
+    private void hideProgress() {
+        binding.progressContainer.setVisibility(View.GONE);
+        binding.progressText.setText("");
+    }
+
 
     private void setupRecyclerView() {
         productAdapter = new ProductAdapter(new ProductAdapter.OnProductClickListener() {
@@ -66,9 +76,13 @@ public class HomeContentFragment extends Fragment {
     }
 
     private void fetchProducts() {
+        showProgress("Loading products...");
+
         db.collection("products")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .addSnapshotListener((value, error) -> {
+                    hideProgress();
+
                     if (error != null) {
                         Log.e("HomeFragment", "Listen failed", error);
                         binding.textHome.setText(R.string.error_loading_products);
@@ -87,24 +101,41 @@ public class HomeContentFragment extends Fragment {
                         }
                     }
 
-                    productAdapter.submitList(products);
+                    productAdapter.submitList(new ArrayList<>(products));
                     binding.textHome.setVisibility(products.isEmpty() ? View.VISIBLE : View.GONE);
                 });
     }
 
-    private void addToCart(Product product) {
-        product.setInCart(true);
-        product.setCartTimestamp(System.currentTimeMillis());
 
-        db.collection("products")
-                .document(product.getId())
-                .update("inCart", true, "cartTimestamp", product.getCartTimestamp())
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(requireContext(), "Added to cart", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(requireContext(), "Failed to add to cart", Toast.LENGTH_SHORT).show();
-                });
+    private void addToCart(Product product) {
+        if (product == null || product.isInCart()) {
+            Toast.makeText(requireContext(), "Already in cart", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        showProgress("Adding to cart...");
+
+        try {
+            product.setInCart(true);
+            product.setCartTimestamp(System.currentTimeMillis());
+
+            db.collection("products")
+                    .document(product.getId())
+                    .update("inCart", true, "cartTimestamp", product.getCartTimestamp())
+                    .addOnSuccessListener(aVoid -> {
+                        hideProgress();
+                        Toast.makeText(requireContext(), "Added to cart", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        hideProgress();
+                        Toast.makeText(requireContext(), "Failed to add to cart", Toast.LENGTH_SHORT).show();
+                        Log.e("AddToCart", "Error updating Firestore", e);
+                    });
+        } catch (Exception e) {
+            hideProgress();
+            Toast.makeText(requireContext(), "Unexpected error", Toast.LENGTH_SHORT).show();
+            Log.e("AddToCart", "Exception occurred", e);
+        }
     }
 
     private void removeFromCart(Product product) {
