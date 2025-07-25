@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
                 selected = new com.joseph.e_electronicshop.ui.home.ShopFragment();
             }
             else if (id == R.id.nav_cart) {
-                selected = new com.joseph.e_electronicshop.ui.home.CartFragment();
+                selected = new com.joseph.e_electronicshop.ui.cart.CartFragment();
             }
             else if (id == R.id.nav_account) {
                 selected = new AccountFragment();

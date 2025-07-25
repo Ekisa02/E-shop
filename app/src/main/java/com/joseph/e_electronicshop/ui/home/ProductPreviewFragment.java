@@ -30,6 +30,9 @@ import java.util.Objects;
 
 public class ProductPreviewFragment extends Fragment {
 
+
+
+
     private ImageView previewImageView;
     private TextView productNameTextView, priceKshTextView, priceUsdTextView,
             discountTextView, discountTypeTextView, descriptionTextView;

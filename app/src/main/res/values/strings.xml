@@ -6,8 +6,10 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
+    <string name="price_format">Ksh %s</string>
+    <string name="discount_format">%s OFF</string>
     <string name="menu_home">Home</string>
+    <string name="market_place">Market Place</string>
     <string name="Contact_us">Contact Us</string>
     <string name="About_us">About Us</string>
     <string name="App_version">App Version</string>

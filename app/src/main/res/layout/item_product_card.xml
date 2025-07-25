@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -56,6 +57,27 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
                 tools:text="20% OFF"/>
+
+            <!-- Add timestamp TextView -->
+            <TextView
+                android:id="@+id/productTimestamp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/holo_purple"
+                android:textSize="10sp"
+                tools:text="Posted 2 hours ago"/>
+
+            <!-- Add description TextView (initially hidden) -->
+            <TextView
+                android:id="@+id/productDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                tools:text="This is a detailed description of the product..."/>
 
             <Button
                 android:id="@+id/addToCartButton"

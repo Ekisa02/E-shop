@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/home_header"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="gone"/>
@@ -27,5 +29,34 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_product_card"/>
+
+    <!-- Progress Indicator at top -->
+    <LinearLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?attr/colorPrimarySurface"
+        android:visibility="gone"
+        android:elevation="4dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/teal_200"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
 
 </LinearLayout>

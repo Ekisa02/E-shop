@@ -22,6 +22,7 @@ public class Product {
     private String imageBase64;
     private long timestamp;
 
+
     // Required empty constructor for Firestore
     public Product() {}
 
@@ -40,6 +41,9 @@ public class Product {
     }
 
     // Getters and setters
+
+
+
     @Exclude
     public String getId() {
         return id;
@@ -140,6 +144,9 @@ public class Product {
         this.timestamp = timestamp;
     }
 
+
+
+
     // Helper method to convert to Map for Firestore
     @Exclude
     public Map<String, Object> toMap() {
@@ -153,7 +160,12 @@ public class Product {
         map.put("category", category);
         map.put("imageBase64", imageBase64);
         map.put("timestamp", timestamp);
+        //cart
+        map.put("inCart", inCart);
+        map.put("cartTimestamp", cartTimestamp);
+
         return map;
+
     }
 
     @Override
@@ -168,4 +180,37 @@ public class Product {
     public int hashCode() {
         return id.hashCode();
     }
+
+
+
+    // Add these fields to your Product class
+    @PropertyName("inCart")
+    private boolean inCart = false;
+
+    @PropertyName("cartTimestamp")
+    private long cartTimestamp = 0L;
+
+    // Add getters and setters
+    @PropertyName("inCart")
+    public boolean isInCart() {
+        return inCart;
+    }
+
+    @PropertyName("inCart")
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
+    }
+
+    @PropertyName("cartTimestamp")
+    public long getCartTimestamp() {
+        return cartTimestamp;
+    }
+
+    @PropertyName("cartTimestamp")
+    public void setCartTimestamp(long cartTimestamp) {
+        this.cartTimestamp = cartTimestamp;
+    }
+
+
+
 }

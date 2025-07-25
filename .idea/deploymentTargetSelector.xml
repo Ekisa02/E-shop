@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-07-22T10:55:00.635521195Z">
+        <DropdownSelection timestamp="2025-07-24T07:29:12.640887634Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=/home/ekisa/.config/.android/avd/Pixel_8.avd" />

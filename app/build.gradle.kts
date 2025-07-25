@@ -45,6 +45,9 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
         implementation ("com.google.android.material:material:1.11.0")
 
+    // Glide for image loading
+    implementation (libs.github.glide)
+    annotationProcessor(libs.xcom.compiler)
     implementation(libs.appcompat)
     implementation(libs.material.v160)
     // Image picker and cropping
