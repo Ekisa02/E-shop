@@ -1,5 +1,6 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp">
@@ -7,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="8dp">
 
         <ImageView
@@ -26,6 +27,8 @@
             <TextView
                 android:id="@+id/cartProductName"
                 android:layout_width="match_parent"
+                android:gravity="start"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -35,11 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:layout_gravity="center"
+                android:gravity="start"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/cartTimeAdded"
+                android:layout_gravity="center"
+                android:gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -49,9 +56,13 @@
 
         <Button
             android:id="@+id/buyButton"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Buy Now"/>
+            android:layout_gravity="center"
+            android:onClick="@color/teal_200"
+            android:text="Buy Now"
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

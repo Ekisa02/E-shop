@@ -42,8 +42,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 
 public class AdminpageFragment extends Fragment {
+
+
+    public AdminpageFragment(){
+
+    };
 
     private static final String TAG = "AdminFragment";
     private static final int MAX_IMAGE_SIZE_KB = 1024; // 1MB max
@@ -504,4 +511,6 @@ public class AdminpageFragment extends Fragment {
         productImageView.setImageDrawable(null);
         mainHandler.removeCallbacksAndMessages(null);
     }
+
+
 }
