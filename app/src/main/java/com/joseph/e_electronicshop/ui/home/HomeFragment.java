@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
 
             int id = item.getItemId();
             if (id == R.id.nav_shop) {
-                selected = new com.joseph.e_electronicshop.ui.home.ShopFragment();
+                selected = new com.joseph.e_electronicshop.ui.shop.ShopFragment();
             }
             else if (id == R.id.nav_cart) {
                 selected = new com.joseph.e_electronicshop.ui.cart.CartFragment();

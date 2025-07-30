@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -18,6 +19,9 @@ import com.joseph.e_electronicshop.R;
 import com.joseph.e_electronicshop.databinding.FragmentCartBinding;
 import com.joseph.e_electronicshop.ui.Adapters.CartAdapter;
 import com.joseph.e_electronicshop.ui.Adapters.Product;
+import com.joseph.e_electronicshop.ui.shop.ShopFragment;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,14 +83,25 @@ public class CartFragment extends Fragment {
     }
 
     private void buyProduct(Product product) {
-        // Implement purchase logic
-        Toast.makeText(requireContext(), "Purchased: " + product.getProductName(), Toast.LENGTH_SHORT).show();
+        // Create bundle with all necessary product data
+        Bundle args = new Bundle();
+        args.putString("productId", product.getId());
+        args.putString("productName", product.getProductName());
+        args.putString("productPrice", product.getPriceKsh());
+        args.putString("productImage", product.getImageBase64());
+        args.putString("productDescription", product.getDescription());
 
-        // Remove from cart after purchase
-        db.collection("products")
-                .document(product.getId())
-                .update("inCart", false, "cartTimestamp", 0);
+        // Create and attach arguments to ShopFragment
+        ShopFragment shopFragment = new ShopFragment();
+        shopFragment.setArguments(args);
+
+        // Navigate to ShopFragment
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.tab_fragment_container, shopFragment)
+                .addToBackStack(null)
+                .commit();
     }
+
 
     @Override
     public void onDestroyView() {
