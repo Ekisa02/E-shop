@@ -29,11 +29,23 @@
     <color name="ripple_white">#40FFFFFF</color> <!-- Semi-transparent white -->
 
     <color name="mpesa_green">#0CB04B</color>
-    <color name="paypal_blue">#003087</color>
     <color name="stripe_purple">#6772E5</color>
 
     <color name="dark_text">#212121</color>
     <color name="medium_text">#424242</color>
     <color name="light_gray">#F5F5F5</color>
+    <!-- PayPal Brand Colors -->
+    <color name="paypal_blue">#003087</color>
+    <color name="paypal_blue_light">#009cde</color>
+    <color name="paypal_blue_dark">#001d4a</color>
+
+    <!-- Background/UI Colors -->
+
+    <color name="card_stroke">#E0E0E0</color>
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#0070BA</color>
+    <color name="gradient_end">#00B6FF</color>
+    <?xml version="1.0" encoding="utf-8"?>
+
 
 </resources>

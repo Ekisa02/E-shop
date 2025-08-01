@@ -5,17 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SmsManager;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.joseph.e_electronicshop.R;
 import com.joseph.e_electronicshop.ui.payments.OrderTrackingActivity;
+import com.joseph.e_electronicshop.ui.viewmodels.SharedProductViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class MpesaActivity extends AppCompatActivity {
     private TextInputEditText etMpesaRef;
     private double amount;
     private ProgressDialog progressDialog;
+    private SharedProductViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class MpesaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mpesa);
 
         initializeViews();
-        setupPaymentData();
+        setupViewModel();
         setupClickListeners();
     }
 
@@ -52,8 +54,26 @@ public class MpesaActivity extends AppCompatActivity {
         etMpesaRef = findViewById(R.id.etMpesaRef);
     }
 
-    private void setupPaymentData() {
-        amount = getIntent().getDoubleExtra("amount", 0.0);
+    private void setupViewModel() {
+        sharedViewModel = new ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
+        ).get(SharedProductViewModel.class);
+
+        sharedViewModel.getProduct().observe(this, product -> {
+            if (product != null) {
+                amount = Double.parseDouble(product.getPriceKsh());
+                tvAmount.setText(String.format(Locale.getDefault(), "Ksh %.2f", amount));
+                tvPaybillInfo.setText(String.format("Paybill: %s\nAccount: %s",
+                        PAYBILL_NUMBER, ACCOUNT_NUMBER));
+            } else {
+                Toast.makeText(this, "Product information not available", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+    }
+
+    private void updatePaymentUI() {
         tvAmount.setText(String.format(Locale.getDefault(), "Ksh %.2f", amount));
         tvPaybillInfo.setText(String.format("Paybill: %s\nAccount: %s", PAYBILL_NUMBER, ACCOUNT_NUMBER));
     }
@@ -66,7 +86,6 @@ public class MpesaActivity extends AppCompatActivity {
     private void initiateAutoPayment() {
         showProgressDialog("Initiating MPesa payment...");
 
-        // Simulate USSD dialing
         new Handler().postDelayed(() -> {
             dismissProgressDialog();
             simulateMpesaUssdDial();
@@ -117,9 +136,6 @@ public class MpesaActivity extends AppCompatActivity {
                     amount, PAYBILL_NUMBER, ACCOUNT_NUMBER, timestamp, transactionCode,
                     (new Random().nextInt(9000) + 1000 + amount/10));
 
-            // This would actually send an SMS in a real implementation
-            // SmsManager.getDefault().sendTextMessage("phoneNumber", null, smsMessage, null, null);
-
             Toast.makeText(this, "MPesa confirmation SMS received", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,7 +175,6 @@ public class MpesaActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             dismissProgressDialog();
 
-            // Generate random transaction details
             String transactionCode = "MPM" + new Random().nextInt(900000) + 100000;
             String timestamp = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
 

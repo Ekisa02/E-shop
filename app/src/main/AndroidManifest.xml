@@ -30,16 +30,20 @@
         android:theme="@style/Theme.EelectronicShop">
         <activity
             android:name=".ui.payments.OrderTrackingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.EelectronicShop.NoActionBar"/>
         <activity
             android:name=".ui.payments.StripeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.EelectronicShop.NoActionBar"/>
         <activity
             android:name=".ui.payments.PaypalActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.EelectronicShop.NoActionBar"/>
         <activity
             android:name=".ui.payments.MpesaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.EelectronicShop.NoActionBar"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

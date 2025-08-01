@@ -42,6 +42,7 @@ dependencies {
         implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.recyclerview)
     implementation(libs.play.services.analytics.impl)
+    implementation("com.airbnb.android:lottie:6.1.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
         implementation ("com.google.android.material:material:1.11.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.0")

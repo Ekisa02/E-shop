@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Widget.Custom.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
         <!-- Round-cornered gradient background -->
         <item name="android:background">@drawable/bottom_nav_background</item>
@@ -82,6 +82,10 @@
     <style name="PaymentDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
+    </style>
+    <style name="ShapeAppearanceOverlay.Rounded10" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
     </style>
 
 
