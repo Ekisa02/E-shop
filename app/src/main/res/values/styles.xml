@@ -78,4 +78,11 @@
     </style>
 
 
+    //payment styles
+    <style name="PaymentDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+    </style>
+
+
 </resources>

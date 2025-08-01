@@ -225,5 +225,7 @@ public class Product {
     }
 
 
-
+    public boolean isAvailable() {
+        return true;
+    }
 }

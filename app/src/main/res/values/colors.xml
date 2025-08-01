@@ -28,4 +28,12 @@
     <color name="divider_color">#1F000000</color>
     <color name="ripple_white">#40FFFFFF</color> <!-- Semi-transparent white -->
 
+    <color name="mpesa_green">#0CB04B</color>
+    <color name="paypal_blue">#003087</color>
+    <color name="stripe_purple">#6772E5</color>
+
+    <color name="dark_text">#212121</color>
+    <color name="medium_text">#424242</color>
+    <color name="light_gray">#F5F5F5</color>
+
 </resources>

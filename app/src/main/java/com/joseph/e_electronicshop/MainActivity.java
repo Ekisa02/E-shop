@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,17 +39,28 @@ public class MainActivity extends AppCompatActivity {
                         .setAnchorView(R.id.fab).show();
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_adminpage)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_adminpage)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // ➕ Add destination change listener
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            // List fragments that should show the toolbar
+            if (destination.getId() == R.id.nav_home || destination.getId() == R.id.nav_adminpage) {
+                binding.appBarMain.toolbar.setVisibility(View.VISIBLE);
+            } else {
+                binding.appBarMain.toolbar.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
