@@ -45,7 +45,5 @@
     <!-- Gradient Colors -->
     <color name="gradient_start">#0070BA</color>
     <color name="gradient_end">#00B6FF</color>
-    <?xml version="1.0" encoding="utf-8"?>
-
 
 </resources>
