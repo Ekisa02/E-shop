@@ -1,28 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <!-- Header with app branding -->
+    <item
+        android:id="@+id/nav_header"
+        android:title=""
+        android:enabled="false">
+        <menu>
+            <item
+                android:id="@+id/header_item"
+                android:icon="@drawable/ic_app_logo_colorful"
+                android:title="@string/app_name"
+                android:enabled="false"
+                app:actionLayout="@layout/nav_header_layout"/>
+        </menu>
+    </item>
+
+    <!-- Main navigation items with colorful icons -->
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:icon="@drawable/ic_home_filled"
+            android:title="@string/menu_home"
+            app:iconTint="@color/vibrant_blue"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/Contact_us" />
+            android:icon="@drawable/ic_contact_mail"
+            android:title="@string/Contact_us"
+            app:iconTint="@color/warm_orange"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/About_us" />
+            android:icon="@drawable/ic_info_circle"
+            android:title="@string/About_us"
+            app:iconTint="@color/soft_green"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+    </group>
+
+    <!-- Divider with subtle shadow -->
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/divider"
+                android:enabled="false"
+                android:title="E-Creator"
+                app:actionLayout="@layout/nav_divider"/>
+        </menu>
+    </item>
+
+    <!-- App info section with different styling -->
+    <group android:id="@+id/app_info_group">
         <item
             android:id="@+id/nav_appversion"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/App_version" />
+            android:icon="@drawable/ic_version_tag"
+            android:title="@string/App_version"
+            app:iconTint="@color/subtle_purple"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
         <item
             android:id="@+id/nav_adminpage"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/Adminpage" />
+            android:icon="@drawable/ic_admin_panel"
+            android:title="@string/Adminpage"
+            app:iconTint="@color/deep_red"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
     </group>
 </menu>

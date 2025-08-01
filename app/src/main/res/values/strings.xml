@@ -19,5 +19,6 @@
     <string name="no_products_available">No products available</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_tagline">simple and mordern life.</string>
 
 </resources>

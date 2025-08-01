@@ -1,0 +1,16 @@
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Default State (Animated) -->
+    <item android:id="@+id/state_animated">
+        <animated-vector
+            android:drawable="@drawable/header_gradient_base"
+            android:autoStart="true"
+            android:repeatCount="infinite">
+
+            <target
+                android:name="gradient_colors"
+                android:animation="@animator/gradient_animation"/>
+        </animated-vector>
+    </item>
+
+</animated-selector>

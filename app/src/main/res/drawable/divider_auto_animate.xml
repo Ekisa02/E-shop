@@ -1,0 +1,23 @@
+<!-- res/drawable/divider_auto_animate.xml -->
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- This state auto-plays because of autoStart="true" -->
+    <item android:id="@+id/state_default">
+        <animated-vector
+            android:drawable="@drawable/divider_base"
+            android:autoStart="true"
+            android:repeatCount="infinite">
+
+            <!-- Color-changing animation -->
+            <target
+                android:name="divider_path"
+                android:animation="@animator/divider_color_animation"/>
+
+            <!-- Glow pulse animation -->
+            <target
+                android:name="divider_path"
+                android:animation="@animator/divider_alpha_animation"/>
+        </animated-vector>
+    </item>
+
+</animated-selector>

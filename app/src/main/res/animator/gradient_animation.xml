@@ -1,0 +1,31 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially">
+
+    <!-- Blue → Green → Red → Purple cycle -->
+    <objectAnimator
+        android:propertyName="startColor"
+        android:valueFrom="#FF4285F4"
+        android:valueTo="#FF9C27B0"
+        android:duration="4000"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:valueType="colorType"/>
+
+    <objectAnimator
+        android:propertyName="centerColor"
+        android:valueFrom="#FF34A853"
+        android:valueTo="#FFFB8C00"
+        android:duration="4000"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:valueType="colorType"/>
+
+    <objectAnimator
+        android:propertyName="endColor"
+        android:valueFrom="#FFEA4335"
+        android:valueTo="#FF4285F4"
+        android:duration="4000"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:valueType="colorType"/>
+</set>

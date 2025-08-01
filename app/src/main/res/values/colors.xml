@@ -18,5 +18,14 @@
     <color name="green">#4CAF50</color>
 
     <color name="background_light">#F5F5F5</color>
+    <color name="vibrant_blue">#4285F4</color>
+    <color name="warm_orange">#FB8C00</color>
+    <color name="soft_green">#34A853</color>
+    <color name="subtle_purple">#9C27B0</color>
+    <color name="deep_red">#EA4335</color>
+    <!-- Add these to your existing colors.xml -->
+    <color name="white_alpha_70">#B3FFFFFF</color>
+    <color name="divider_color">#1F000000</color>
+    <color name="ripple_white">#40FFFFFF</color> <!-- Semi-transparent white -->
 
 </resources>

@@ -1,0 +1,39 @@
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/state_pressed" android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="#00FFFFFF"
+                android:centerColor="#FFFFFFFF"
+                android:endColor="#00FFFFFF"
+                android:type="sweep"/>
+        </shape>
+    </item>
+    <item android:id="@+id/state_default">
+        <shape android:shape="rectangle">
+            <solid android:color="#20FFFFFF"/>
+        </shape>
+    </item>
+    <transition android:fromId="@id/state_default" android:toId="@id/state_pressed">
+        <animation-list android:oneshot="false">
+            <item android:duration="100">
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="0"
+                        android:startColor="#00FFFFFF"
+                        android:centerColor="#80FFFFFF"
+                        android:endColor="#00FFFFFF"/>
+                </shape>
+            </item>
+            <item android:duration="100">
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="90"
+                        android:startColor="#00FFFFFF"
+                        android:centerColor="#FFFFFFFF"
+                        android:endColor="#00FFFFFF"/>
+                </shape>
+            </item>
+        </animation-list>
+    </transition>
+</animated-selector>
