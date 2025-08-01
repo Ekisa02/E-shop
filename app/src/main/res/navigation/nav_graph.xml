@@ -7,11 +7,12 @@
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.joseph.e_electronicshop.ui.cart.CartFragment"
-        android:label="Cart">
+        android:label="CartFragment" >
         <action
             android:id="@+id/action_cartFragment_to_shopFragment"
             app:destination="@id/shopFragment" />
     </fragment>
+
 
     <fragment
         android:id="@+id/shopFragment"

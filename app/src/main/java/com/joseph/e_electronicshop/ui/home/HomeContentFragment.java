@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -18,6 +20,9 @@ import com.joseph.e_electronicshop.R;
 import com.joseph.e_electronicshop.databinding.FragmentHomeContentBinding;
 import com.joseph.e_electronicshop.ui.Adapters.Product;
 import com.joseph.e_electronicshop.ui.Adapters.ProductAdapter;
+import com.joseph.e_electronicshop.ui.viewmodels.SharedProductViewModel;
+import com.joseph.e_electronicshop.ui.viewmodels.SharedViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,30 +118,29 @@ public class HomeContentFragment extends Fragment {
             return;
         }
 
-        showProgress("Adding to cart...");
+        product.setInCart(true);
+        product.setCartTimestamp(System.currentTimeMillis());
 
-        try {
-            product.setInCart(true);
-            product.setCartTimestamp(System.currentTimeMillis());
+        // 1. Save to Firestore
+        FirebaseFirestore.getInstance()
+                .collection("products")
+                .document(product.getId())
+                .update("inCart", true, "cartTimestamp", product.getCartTimestamp())
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(requireContext(), "Saved to Firestore", Toast.LENGTH_SHORT).show();
 
-            db.collection("products")
-                    .document(product.getId())
-                    .update("inCart", true, "cartTimestamp", product.getCartTimestamp())
-                    .addOnSuccessListener(aVoid -> {
-                        hideProgress();
-                        Toast.makeText(requireContext(), "Added to cart", Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e -> {
-                        hideProgress();
-                        Toast.makeText(requireContext(), "Failed to add to cart", Toast.LENGTH_SHORT).show();
-                        Log.e("AddToCart", "Error updating Firestore", e);
-                    });
-        } catch (Exception e) {
-            hideProgress();
-            Toast.makeText(requireContext(), "Unexpected error", Toast.LENGTH_SHORT).show();
-            Log.e("AddToCart", "Exception occurred", e);
-        }
+                    // 2. Pass to ViewModel after saving
+                    SharedViewModel viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+                    viewModel.selectProduct(product);
+                    BottomNavigationView nav = requireActivity().findViewById(R.id.bottom_nav);
+                    nav.setSelectedItemId(R.id.nav_cart); // or whatever your menu ID is
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(requireContext(), "Failed to save", Toast.LENGTH_SHORT).show();
+                    Log.e("Firestore", "Error:", e);
+                });
     }
+
 
     private void removeFromCart(Product product) {
         db.collection("products")

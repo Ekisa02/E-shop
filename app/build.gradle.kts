@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.play.services.analytics.impl)
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
         implementation ("com.google.android.material:material:1.11.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.0")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.8.0")
 
     // Glide for image loading
     implementation (libs.github.glide)

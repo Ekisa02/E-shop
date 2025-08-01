@@ -146,6 +146,14 @@ public class Product {
     }
 
 
+    @PropertyName("inCart")
+    private boolean inCart = false;
+
+    @PropertyName("cartTimestamp")
+    private long cartTimestamp = 0L;
+
+
+
 
 
     // Helper method to convert to Map for Firestore
@@ -194,11 +202,6 @@ public class Product {
 
 
     // Add these fields to your Product class
-    @PropertyName("inCart")
-    private boolean inCart = false;
-
-    @PropertyName("cartTimestamp")
-    private long cartTimestamp = 0L;
 
     // Add getters and setters
     @PropertyName("inCart")
