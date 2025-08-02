@@ -40,10 +40,14 @@
     <color name="paypal_blue_dark">#001d4a</color>
 
     <!-- Background/UI Colors -->
-
     <color name="card_stroke">#E0E0E0</color>
     <!-- Gradient Colors -->
     <color name="gradient_start">#0070BA</color>
     <color name="gradient_end">#00B6FF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="card_background_light">#F8F9FA</color>
+
+
+
 
 </resources>

@@ -101,7 +101,13 @@
                 app:iconTint="@android:color/white"
                 app:backgroundTint="@color/colorPrimary"
                 style="@style/Widget.MaterialComponents.Button"/>
-        </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order"
+                android:id="@+id/orderbtn"
+/>        </LinearLayout>
     </ScrollView>
 
 

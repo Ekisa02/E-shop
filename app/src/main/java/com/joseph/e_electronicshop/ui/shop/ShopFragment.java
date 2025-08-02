@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.joseph.e_electronicshop.R;
 import com.joseph.e_electronicshop.databinding.FragmentShopBinding;
 import com.joseph.e_electronicshop.ui.payments.MpesaActivity;
+import com.joseph.e_electronicshop.ui.payments.OrderTrackingActivity;
 import com.joseph.e_electronicshop.ui.payments.PaypalActivity;
 import com.joseph.e_electronicshop.ui.payments.StripeActivity;
 import com.joseph.e_electronicshop.ui.viewmodels.SharedProductViewModel;
@@ -35,7 +36,7 @@ import com.joseph.e_electronicshop.ui.viewmodels.SharedProductViewModel;
 public class ShopFragment extends Fragment {
 
     private FragmentShopBinding binding;
-    private Button purchaseButton;
+    private Button purchaseButton , orderbtn;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -50,6 +51,10 @@ public class ShopFragment extends Fragment {
 
         purchaseButton = view.findViewById(R.id.purchaseButton);
         purchaseButton.setVisibility(View.GONE); // Hidden by default
+
+        orderbtn= view.findViewById(R.id.orderbtn);
+
+        orderbtn.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), OrderTrackingActivity.class)));
 
         SharedProductViewModel viewModel = new ViewModelProvider(requireActivity()).get(SharedProductViewModel.class);
 
