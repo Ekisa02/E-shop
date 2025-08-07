@@ -29,7 +29,7 @@ public class OrderTrackingActivity extends AppCompatActivity {
     private SharedProductViewModel viewModel;
 
     // Simulated order status (in a real app, this would come from your backend)
-    private String[] statuses = {
+    private final String[] statuses = {
             "Order Placed",
             "Processing",
             "Shipped",
@@ -38,7 +38,7 @@ public class OrderTrackingActivity extends AppCompatActivity {
     };
 
     private int currentStatus = 0;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private Runnable statusUpdater;
 
     @Override

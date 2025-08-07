@@ -49,4 +49,25 @@
     <color name="dark_gray">#332E2C2C</color>
     <color name="gray">#673AB7</color>
 
+        <!-- Purple Theme -->
+        <color name="purple_900">#4A148C</color>
+        <color name="purple_gradient">#6A1B9A</color>
+
+        <!-- Orange Theme -->
+        <color name="orange_200">#FFCC80</color>
+        <color name="orange_500">#FF9800</color>
+        <color name="orange_700">#F57C00</color>
+        <color name="orange_900">#E65100</color>
+        <color name="orange_gradient">#FF5722</color>
+
+        <color name="primaryDark">#4D2EC9</color>
+        <color name="secondary">#89D4CF</color>
+        <color name="accent">#FF7E5F</color>
+
+        <color name="textPrimary">#2D3748</color>
+        <color name="textSecondary">#718096</color>
+        <color name="grayLight">#E2E8F0</color>
+        <color name="background">#F8F9FA</color>
+
+
 </resources>

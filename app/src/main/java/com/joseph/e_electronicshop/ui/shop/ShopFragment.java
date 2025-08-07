@@ -1,5 +1,6 @@
 package com.joseph.e_electronicshop.ui.shop;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -139,7 +140,8 @@ public class ShopFragment extends Fragment {
 
             // Vibrate if available
             try {
-                Vibrator vibrator = (Vibrator) requireContext().getSystemService(requireContext().VIBRATOR_SERVICE);
+                requireContext();
+                Vibrator vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
                 if (vibrator != null && vibrator.hasVibrator()) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         vibrator.vibrate(VibrationEffect.createOneShot(15, VibrationEffect.DEFAULT_AMPLITUDE));

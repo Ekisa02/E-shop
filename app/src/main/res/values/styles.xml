@@ -88,5 +88,14 @@
         <item name="cornerSize">10dp</item>
     </style>
 
+    <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/TextInputThemeOverlay</item>
+    </style>
+
+    <style name="TextInputThemeOverlay">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnSurface">@color/textPrimary</item>
+        <item name="colorError">@color/accent</item>
+    </style>
 
 </resources>

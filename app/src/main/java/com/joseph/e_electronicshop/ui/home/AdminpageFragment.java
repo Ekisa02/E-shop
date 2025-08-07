@@ -50,7 +50,7 @@ public class AdminpageFragment extends Fragment {
 
     public AdminpageFragment(){
 
-    };
+    }
 
     private static final String TAG = "AdminFragment";
     private static final int MAX_IMAGE_SIZE_KB = 1024; // 1MB max
