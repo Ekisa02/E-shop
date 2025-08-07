@@ -29,10 +29,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EelectronicShop">
         <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.EelectronicShop.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.auth.Sign_InActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".ui.auth.Sign_UpActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".ui.payments.OrderTrackingActivity"
@@ -57,10 +68,11 @@
             tools:replace="android:value" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.auth.SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.EelectronicShop.NoActionBar">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
