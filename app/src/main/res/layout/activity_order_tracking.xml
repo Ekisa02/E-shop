@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient_blue"
+    android:background="@color/light_gray"
     android:fillViewport="true">
 
     <LinearLayout
@@ -13,105 +13,13 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header Card -->
-        <com.google.android.material.card.MaterialCardView
+        <!-- Order Summary Card -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:strokeColor="@color/white_20"
-            app:strokeWidth="1dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/card_background_light">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Order Status"
-                    android:textSize="20sp"
-                    android:textColor="@color/primary_text"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tvOrderId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/secondary_text"
-                    android:gravity="center"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/tvOrderStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tvEstimatedDelivery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/secondary_text"
-                    android:gravity="center"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Tracking Timeline -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:strokeColor="@color/white_20"
-            app:strokeWidth="1dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/card_background_light">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tracking History"
-                    android:textSize="18sp"
-                    android:textColor="@color/primary_text"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
-
-                <LinearLayout
-                    android:id="@+id/trackingTimeline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Order Summary -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:strokeColor="@color/white_20"
-            app:strokeWidth="1dp"
-            android:backgroundTint="@color/card_background_light">
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,190 +31,229 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Order Summary"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textColor="@color/primary_text"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
-
-                <LinearLayout
-                    android:id="@+id/orderItemsContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="16dp"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/divider_color"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/mpesa_green" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Subtotal"
-                        android:textSize="16sp"
-                        android:textColor="@color/secondary_text"/>
-
-                    <TextView
-                        android:id="@+id/tvSubtotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/primary_text"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Shipping"
-                        android:textSize="16sp"
-                        android:textColor="@color/secondary_text"/>
-
-                    <TextView
-                        android:id="@+id/tvShipping"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/primary_text"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Tax"
-                        android:textSize="16sp"
-                        android:textColor="@color/secondary_text"/>
-
-                    <TextView
-                        android:id="@+id/tvTax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/primary_text"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider_color"
-                    android:layout_marginBottom="8dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Total"
-                        android:textSize="18sp"
-                        android:textColor="@color/primary_text"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/tvTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                        android:text="Order Number:"
+                        android:textColor="@color/dark_gray" />
 
-        <!-- Delivery Info -->
-        <com.google.android.material.card.MaterialCardView
+                    <TextView
+                        android:id="@+id/orderNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="ORD-123456"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order Date:"
+                        android:textColor="@color/dark_gray" />
+
+                    <TextView
+                        android:id="@+id/orderDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Jun 15, 2023"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/estimatedDelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estimated delivery: Jun 18, 2023"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:strokeColor="@color/white_20"
-            app:strokeWidth="1dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/card_background_light">
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_bar_horizontal" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Delivery Information"
-                    android:textSize="18sp"
-                    android:textColor="@color/primary_text"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/tvDeliveryAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/secondary_text"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tvContactNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/secondary_text"
-                    android:layout_marginBottom="16dp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnTrackOnMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="View on Map"
-                    android:textColor="@color/white"
-                    app:icon="@drawable/ic_map"
-                    app:iconTint="@color/white"
-                    app:backgroundTint="@color/colorPrimary"
-                    app:cornerRadius="24dp"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Support Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnContactSupport"
+        <!-- Status Text -->
+        <TextView
+            android:id="@+id/statusText"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Contact Support"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="Order Placed"
             android:textColor="@color/colorPrimary"
-            app:icon="@drawable/ic_support"
-            app:iconTint="@color/colorPrimary"
-            app:backgroundTint="@color/white"
-            app:strokeColor="@color/colorPrimary"
-            app:strokeWidth="1dp"
-            app:cornerRadius="24dp"
-            android:layout_marginTop="8dp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Status Timeline -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <!-- Order Placed -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/statusIcon1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_order_placed"
+                    app:tint="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Placed"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/statusLine1"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:background="@color/gray" />
+
+            <!-- Processing -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/statusIcon2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_order_processing"
+                    app:tint="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Processing"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/statusLine2"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:background="@color/gray" />
+
+            <!-- Shipped -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/statusIcon3"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_order_shipped"
+                    app:tint="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Shipped"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/statusLine3"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:background="@color/gray" />
+
+            <!-- Delivered -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/statusIcon4"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_order_delivered"
+                    app:tint="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Delivered"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Refresh Button -->
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Refresh Status"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 </ScrollView>

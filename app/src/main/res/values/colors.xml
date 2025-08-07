@@ -46,8 +46,7 @@
     <color name="gradient_end">#00B6FF</color>
     <color name="white_20">#33FFFFFF</color>
     <color name="card_background_light">#F8F9FA</color>
-
-
-
+    <color name="dark_gray">#332E2C2C</color>
+    <color name="gray">#673AB7</color>
 
 </resources>
